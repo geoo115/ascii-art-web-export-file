@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ascii-art-web</title>
+    <link rel="icon" href="x1.png" type="image/icon">
+    <link rel="stylesheet" type="text/css" href="/static/style.css"> 
+</head>
+<body>
+    <h1>Ascii Art Generator</h1>
+
+    <form action="/ascii-art" method="POST">
+        <div>
+            <label for="text-input">Text:</label>
+            <textarea id="text-input" name="text" required></textarea>
+        </div>
+        <div class="radio-group">
+            <label for="banner-shadow">
+                <input type="radio" id="banner-shadow" name="banner" value="shadow" required>
+                Shadow
+            </label>
+            <label for="banner-standard">
+                <input type="radio" id="banner-standard" name="banner" value="standard" required>
+                Standard
+            </label>
+            <label for="banner-thinkertoy">
+                <input type="radio" id="banner-thinkertoy" name="banner" value="thinkertoy" required>
+                Thinkertoy
+            </label>
+        </div>
+        <div>
+            <button type="submit">Generate Ascii Art</button>
+        </div>
+    </form>
+
+    {{ if .AsciiArt }}
+    <h2>Generated Ascii Art:</h2>
+    <pre>{{.AsciiArt}}</pre>
+
+    <div>
+        
+        <a href="/export?data={{.AsciiArt}}" download="ascii_art.txt"><button type="submit">Download ASCII Art</button></a>
+   
+    </div>
+    {{ end }}
+</body>
+</html>
